@@ -1,0 +1,124 @@
+header {
+  padding-bottom: 150px;
+  overflow: hidden;
+  position: relative;
+  padding-top: 100px; }
+  header .center {
+    margin-top: 50px; }
+    header .center .tab-btn {
+      position: relative;
+      display: flex;
+      cursor: pointer;
+      width: 200px;
+      height: 36px;
+      background-color: aliceblue;
+      border-radius: 25px;
+      font-size: 14px; }
+      header .center .tab-btn button {
+        position: relative;
+        background-color: transparent;
+        cursor: pointer;
+        width: 50%;
+        height: 36px;
+        border: 0px;
+        z-index: 1;
+        opacity: 0.4;
+        font-size: 14px;
+        transition: all 0.4s ease 0s; }
+        header .center .tab-btn button.active {
+          opacity: 1 !important; }
+      header .center .tab-btn span {
+        position: absolute;
+        width: 100px;
+        height: 36px;
+        left: 0px;
+        background-color: white;
+        font-size: 14px;
+        border-radius: 21px;
+        box-shadow: #ccc 0px 1px 2px 0px;
+        transition: all 0.4s ease 0s; }
+        header .center .tab-btn span.right {
+          transform: translateX(100px); }
+  header .header-1 {
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 40px;
+    color: White; }
+  header .parag-1 {
+    font-size: 16px;
+    color: White; }
+  header .safari-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: -19;
+    height: 100%;
+    overflow: hidden; }
+    header .safari-wrapper video {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0; }
+    header .safari-wrapper img {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      top: 0;
+      mix-blend-mode: multiply;
+      z-index: 1;
+      height: 100%;
+      object-fit: cover; }
+
+nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  border: 1px solid #f0f0f5;
+  background: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: #1b27330a 0px 1px 2px, #1b27330a 0px 4px 8px;
+  z-index: 10; }
+  nav .logo {
+    width: 185px; }
+  nav .col-6 {
+    display: flex;
+    align-items: center; }
+  nav .right-coin-info {
+    display: flex;
+    align-items: center; }
+    nav .right-coin-info .coin-box {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+      color: #27292e;
+      font-weight: 500;
+      border-radius: 1000px;
+      padding: 5px 10px; }
+      nav .right-coin-info .coin-box:first-child {
+        background-color: #5546ff1a; }
+      nav .right-coin-info .coin-box:last-child {
+        margin-right: 0;
+        background-color: #f7931a1a; }
+      nav .right-coin-info .coin-box img {
+        width: 23px;
+        margin-right: 5px; }
+
+.top-right-coin-box {
+  justify-content: flex-end; }
+
+@media (max-width: 768px) {
+  .top-right-coin-box {
+    justify-content: center; }
+
+  .list > div {
+    flex-direction: column;
+    align-items: flex-end !important; } }
+
+/*# sourceMappingURL=header.css.map */

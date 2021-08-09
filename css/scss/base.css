@@ -1,0 +1,21 @@
+@import "https://fontlibrary.org//face/open-sauce-one";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+  color: #27292e; }
+
+body {
+  line-height: 1.5;
+  font-family: 'OpenSauceOneRegular';
+  font-weight: normal;
+  font-style: normal;
+  background: #f9f9fb; }
+
+/*# sourceMappingURL=base.css.map */

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackulator</title>
+    <link rel="icon" href="img/logo-min.png" type="image/gif" sizes="16x16">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/scss/compiled.css"> 
+</head>
+
+<body>
+    <nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <img src="img/logo.png" class="logo" alt="">
+                </div>
+                <div class="col-12 d-flex top-right-coin-box col-md-6 mt-3 mt-md-0">
+                    <div class="right-coin-info">
+                        <div class="coin-box" id="stx">
+                            <img src="img/stx.svg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="coin-box" id="btc">
+                            <img src="img/btc.svg" alt="">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="safari-wrapper">
+            <video autoplay="" loop=""
+                style="background-image:url(&quot;https://assets.website-files.com/5fcf9ac604d37418aa70a5ab/6040d72dcd78ad8f04db36cf_gradioooo-ps-poster-00001.jpg&quot;)"
+                muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
+                <source
+                    src="https://assets.website-files.com/5fcf9ac604d37418aa70a5ab/6040d72dcd78ad8f04db36cf_gradioooo-ps-transcode.mp4"
+                    data-wf-ignore="true">
+                <source
+                    src="https://assets.website-files.com/5fcf9ac604d37418aa70a5ab/6040d72dcd78ad8f04db36cf_gradioooo-ps-transcode.webm"
+                    data-wf-ignore="true">
+            </video>
+            <img src="https://assets.website-files.com/5fcf9ac604d37418aa70a5ab/6000295ae0266c338f818abc_noise.png"
+                loading="eager" sizes="(max-width: 479px) 93vw, (max-width: 1919px) 95vw, 1368px"
+                srcset="https://assets.website-files.com/5fcf9ac604d37418aa70a5ab/6000295ae0266c338f818abc_noise-p-500.png 500w, https://assets.website-files.com/5fcf9ac604d37418aa70a5ab/6000295ae0266c338f818abc_noise.png 2880w"
+                alt="" class="noise">
+        </div>
+        <div class="center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="header-1 mb-4">Stacking calculator</h1>
+                        <p class="parag-1 mb-4">Find out what you could earn by locking up your Stacks Token</p>
+                        <div class="tab-btn mx-auto mt-4">
+                            <button class="simple-btn active">Simple</button>
+                            <button class="advanced-btn">Advanced</button>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row main-row">
+                <div class="col-md-7">
+                    <div class="sc-box">
+                        <div class="form-group">
+                            <label>Amount of STX you’ll lock <img src="img/question.svg" class="question-mark"
+                                    data-toggle="tooltip" title="Amount of STX tokens stacked by you"></label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="input-cont" after-text="STX">
+                                        <input type="text" class="form-control" id="input-stx-amount" />
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-cont" after-text="USD">
+                                        <input type="text" class="form-control" id="input-usd-provision-price" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mt-5">
+                            <label>The duration of you would like stack <img src="img/question.svg"
+                                    class="question-mark" data-toggle="tooltip"
+                                    title="Amount of STX tokens stacked by you"></label>
+                            <select class="form-select" id="cycleDaySelect">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sc-box" style="display:none" advanced>
+                        <div class="form-group">
+                            <label>Stacks Token Price <img src="img/question.svg" class="question-mark"
+                                    data-toggle="tooltip"
+                                    title="This is the historical price at the day the cycle started."></label>
+                            <div class="input-cont" after-text="USD">
+                                <input type="text" class="form-control" id="input-stx" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-5">
+                            <label>Bitcoin Price <img src="img/question.svg" class="question-mark" data-toggle="tooltip"
+                                    title="This is the historical price at the day the cycle started."></label>
+                            <div class="input-cont" after-text="USD">
+                                <input type="text" class="form-control" id="input-btc" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sc-box" style="display:none" advanced>
+                        <div class="form-group">
+                            <label>Minimum Threshold <img src="img/question.svg" class="question-mark"
+                                    data-toggle="tooltip"
+                                    title="Minimum required STX amount for Stacking by yourself"></label>
+                            <div class="input-cont" after-text="STX">
+                                <input type="text" class="form-control" id="input-minimum-threshold" />
+                            </div>
+                        </div>
+                        <div class="range-slider-container mt-5">
+                            <div class="form-group">
+                                <label>Pool Fee
+                                    <img src="img/question.svg" class="question-mark" data-toggle="tooltip"
+                                        title="Pool services may charge fee for their pool services."></label>
+                                <div class="input-cont" after-text="%">
+                                    <input type="text" class="form-control" id="input-pool-fee" value="5" />
+                                </div>
+                            </div>
+                            <div class="range-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="sc-box">
+                        <div class="text-center">
+                            <p>You could earn</p>
+                            <h1 class="btc-per-year-h1" btc="" dollar=""></h1>
+                            <small>in Bitcoin per year</small>
+                        </div>
+                        <a href="https://www.stacks.co/stacking"
+                            class="btn btn-primary btn-lg btn-block w-100 btn-1 mt-3">Start Stacking</a>
+                        <div class="right-hr"></div>
+                        <div class="list">
+                            <div>
+                                <div><label>Rewards for <span class="cycle-length-span mx-1">1</span> cycle (in STX)
+                                        <img src="img/question.svg" class="question-mark" data-toggle="tooltip"
+                                            title="Estiminated reward amount in STX for 1 cycle."></label></div>
+                                <div id="calc-text-1">Ӿ0</div>
+                            </div>
+                            <div>
+                                <div><label>Rewards for <span class="cycle-length-span mx-1">1</span> cycle (in USD)
+                                        <img src="img/question.svg" class="question-mark" data-toggle="tooltip"
+                                            title="Estiminated Reward amount in USD for 1 cycle."></label></div>
+                                <div id="calc-text-2">$0</div>
+                            </div>
+                            <div>
+                                <div><label>Rewards for <span class="cycle-length-span mx-1">1</span> cycle (in BTC)
+                                        <img src="img/question.svg" class="question-mark" data-toggle="tooltip"
+                                            title="Estiminated Reward amount in BTC for 1 cycle."></label></div>
+                                <div id="calc-text-3">₿0</div>
+                            </div>
+                            <div>
+                                <div><label>Stacking Threshold <img src="img/question.svg" class="question-mark"
+                                            data-toggle="tooltip"
+                                            title="Minimum required STX amount for Stacking by yourself."></label>
+                                </div>
+                                <div id="calc-text-4">Ӿ0</div>
+                            </div>
+                            <div class="calc-text-5" style="display:none;">
+                                <div><label>Pool Fee <img src="img/question.svg" class="question-mark"
+                                            data-toggle="tooltip"
+                                            title="Pool services may charge fee for their pool services."></label>
+                                </div>
+                                <div id="calc-text-5">5%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 custom-hr">
+                    <div class="top-swipe-header">
+                        <div class="left">
+                            <h4>All Cycles</h4>
+                        </div>
+                        <div class="right">
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-container cycles">
+                        <div class="swiper-wrapper">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h4 class="mb-4">FAQ</h4>
+                    <div class="faq-list">
+                        <div>
+                            <div class="t">
+                                <div class="l">
+                                    What is Stacks?
+                                </div>
+                                <div class="r">
+                                    +
+                                </div>
+                            </div>
+                            <div class="b">
+                                <p>Stacks is an open-source network of decentralized apps and smart contracts built on Bitcoin. Stacks unleashes Bitcoin's full potential as a programmable base layer. They run their logic on the blockchain with smart contracts, are controlled by code instead of companies, and are accessible to anyone.<br/></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="t">
+                                <div class="l">
+                                    How can I start Stacking?
+                                </div>
+                                <div class="r">
+                                    +
+                                </div>
+                            </div>
+                            <div class="b">
+                                <p>There are two ways to stack: by yourself or in a pool. To stack by yourself you’ll
+                                    need to meet the dynamic minimum, which can change from cycle to cycle. If you don’t
+                                    meet the minimum, you can still stack by pooling with others.<br/><a
+                                        href="https://blog.stacks.co/stacking-strategy">Read the stacking guide</a> to
+                                    choose a strategy that's right for you.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="t">
+                                <div class="l">
+                                    If I don't meet the minimum, can I stack?
+                                </div>
+                                <div class="r">
+                                    +
+                                </div>
+                            </div>
+                            <div class="b">
+                                <p>Even if you don't meet the minimum, you can still stack and earn Bitcoin by pooling
+                                    with others. A service will pool STX together and distribute rewards back to the
+                                    participants.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="t">
+                                <div class="l">
+                                    Is the data shown here certain?
+                                </div>
+                                <div class="r">
+                                    +
+                                </div>
+                            </div>
+                            <div class="b">
+                                <p>All data and information is provided "as is" for informational purposes only and is
+                                    not for trading or advice on financial, investment, tax, legal, accounting or other
+                                    matters. Please check with your broker or financial representative to verify prices
+                                    prior to any trading.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+    </main>
+
+    <footer>
+        <p> Designed with ❤</p>
+        <p><a href="https://github.com/OmurCataltepe/Stackulator/issues">Give feedback</a> | <a href="https://stacks.co">stacks.co</a></p>
+        <p> <a href="https://www.joinfreehold.com"> <img src="img/free-hold-logo.svg" alt=""></a></p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"
+        integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
