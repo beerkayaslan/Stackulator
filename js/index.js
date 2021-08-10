@@ -15,7 +15,7 @@ const cycleDurationEach = 14;
 const per_year_variable = 25;
 
 // default amount in usd
-const userFixUsd = "1,000.00";
+const userFixUsd = 1000;
 
 // bitcoin price and stx coin price
 var minimumThreshold, APY, btcPrice, stxPrice,
@@ -249,8 +249,8 @@ function changeMode(mode) {
         var cycleLength = parseFloat($("#cycleDaySelect").val());
         var USD = parseFloat(numberWithRemoveCommas($("#input-usd-provision-price").val().length == 0 ? "1" : $("#input-usd-provision-price").val()));
 
-        user_minimumThreshold = parseFloat(numberWithRemoveCommas($("#input-minimum-threshold").val()));
-        poolFee = parseInt($("#input-pool-fee").val()) > 100 ? 100 : parseInt($("#input-pool-fee").val());
+        user_minimumThreshold = parseFloat(numberWithRemoveCommas($("#input-minimum-threshold").val().length == 0 ? "1" : $("#input-minimum-threshold").val()));
+        poolFee = parseInt($("#input-pool-fee").val().length == 0 ? "1" : $("#input-pool-fee").val()) > 100 ? 100 : parseInt($("#input-pool-fee").val().length == 0 ? "1" : $("#input-pool-fee").val());
         user_btcPrice = parseFloat(numberWithRemoveCommas($("#input-btc").val().length == 0 ? "1" : $("#input-btc").val()));
         user_stxPrice = parseFloat(numberWithRemoveCommas($("#input-stx").val().length == 0 ? "1" : $("#input-stx").val()));
 
@@ -298,6 +298,8 @@ $(document).on("input", ".form-group input", function () {
     changeMode(mode);
 });
 
+
+
 $(document).on("input", ".form-group select", function () {
     changeMode(mode);
 });
@@ -307,7 +309,6 @@ $(document).on("input", "#input-usd-provision-price", function () {
     var val = $(this).val();
     if (val == undefined || val.length == 0) {
         val = "1";
-        $(this).val(val);
     }
     if (mode == "simple") {
         $("#input-stx-amount").val(numberWithCommas((parseFloat(numberWithRemoveCommas(val)) / stxPrice).toFixed(2)));
@@ -316,7 +317,36 @@ $(document).on("input", "#input-usd-provision-price", function () {
     }
 });
 
+$(document).on("focusout", "#input-usd-provision-price", function () {
+    var val = $(this).val();
+    if (val == undefined || val.length == 0) {
+        val = "1";
+        $(this).val(val);
+    }
+
+    if (mode == "simple") {
+        $("#input-stx-amount").val(numberWithCommas((parseFloat(numberWithRemoveCommas(val)) / stxPrice).toFixed(2)));
+    } else {
+        $("#input-stx-amount").val(numberWithCommas((parseFloat(numberWithRemoveCommas(val)) / user_stxPrice).toFixed(2)));
+    }
+    changeMode(mode);
+});
+
 $(document).on("input", "#input-stx-amount", function () {
+    var val = $(this).val();
+    if (val == undefined || val.length == 0) {
+        val = "1";
+    }
+
+    if (mode == "simple") {
+        $("#input-usd-provision-price").val(numberWithCommas((parseFloat(numberWithRemoveCommas(val)) * stxPrice).toFixed(2)));
+    } else {
+        $("#input-usd-provision-price").val(numberWithCommas((parseFloat(numberWithRemoveCommas(val)) * user_stxPrice).toFixed(2)));
+    }
+    changeMode(mode);
+});
+
+$(document).on("focusout", "#input-stx-amount", function () {
     var val = $(this).val();
     if (val == undefined || val.length == 0) {
         val = "1";
@@ -328,6 +358,7 @@ $(document).on("input", "#input-stx-amount", function () {
     } else {
         $("#input-usd-provision-price").val(numberWithCommas((parseFloat(numberWithRemoveCommas(val)) * user_stxPrice).toFixed(2)));
     }
+    changeMode(mode);
 });
 
 $(document).on("input", "#input-stx", function () {
@@ -335,8 +366,8 @@ $(document).on("input", "#input-stx", function () {
     if (val == undefined || val.length == 0) {
         val = "1";
     }
-
     $("#input-stx-amount").val(numberWithCommas((parseFloat(numberWithRemoveCommas($("#input-usd-provision-price").val())) * parseFloat(numberWithRemoveCommas(val))).toFixed(2)));
+    changeMode(mode);
 });
 
 $(document).on("focusout", "#input-stx", function () {
@@ -345,6 +376,7 @@ $(document).on("focusout", "#input-stx", function () {
         val = "1";
         $(this).val(val);
     }
+    changeMode(mode);
 });
 
 $(document).on("input", "#input-btc", function () {
@@ -352,6 +384,7 @@ $(document).on("input", "#input-btc", function () {
     if (val == undefined || val.length == 0) {
         val = "1";
     }
+    changeMode(mode);
 });
 
 $(document).on("focusout", "#input-btc", function () {
@@ -360,6 +393,23 @@ $(document).on("focusout", "#input-btc", function () {
         val = "1";
         $(this).val(val);
     }
+    changeMode(mode);
+});
+
+$(document).on("input", "#input-minimum-threshold,#input-pool-fee", function () {
+    var val = $(this).val();
+    if (val == undefined || val.length == 0) {
+        val = "1";
+    }
+});
+
+$(document).on("focusout", "#input-minimum-threshold,#input-pool-fee", function () {
+    var val = $(this).val();
+    if (val == undefined || val.length == 0) {
+        val = "1";
+        $(this).val(val);
+    }
+    changeMode(mode);
 });
 
 
@@ -420,16 +470,18 @@ $(document).on("input", ".range-slider-container input", function () {
     var val = $(this).val();
     if (parseInt(val) > 100) {
         $(this).val(100);
+    }else if(val == undefined || val.length == 0){
+        val = 1;
     }
     $(this).closest(".range-slider-container").find(".range-slider").slider("value", val);
 });
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    return x;
 }
 
 function numberWithRemoveCommas(x) {
-    return x.replace(/\,/g, '');
+    return x;
 }
 
 
@@ -440,5 +492,5 @@ $(document).on("click", ".faq-list > div > .t", function () {
 });
 
 $("#input-pool-fee").mask('000');
-$("#input-stx,#input-btc,#input-usd-provision-price,#input-stx-amount").mask('000,000,000,000,000.00', { reverse: true });
-$("#input-minimum-threshold").mask('000,000,000,000,000', { reverse: true });
+$("#input-stx,#input-btc,#input-usd-provision-price,#input-stx-amount").mask('000000000000000.00', { reverse: true } );
+$("#input-minimum-threshold").mask('000000000000000');
