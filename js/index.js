@@ -14,8 +14,8 @@ const cycleDurationEach = 14;
 
 const per_year_variable = 25;
 
-// default amount in usd
-const userFixUsd = 1000;
+// default amount in stx
+const defaultAmountSTX = 1000;
 
 // bitcoin price and stx coin price
 var minimumThreshold, APY, btcPrice, stxPrice,
@@ -49,8 +49,8 @@ const calc = async (per_year) => {
     $("#input-stx").val(numberWithCommas(parseFloat(stxPrice).toFixed(2)));
     $("#input-btc").val(numberWithCommas(parseFloat(btcPrice).toFixed(2)));
 
-    $("#input-usd-provision-price").val(userFixUsd);
-    $("#input-stx-amount").val(numberWithCommas((parseFloat(numberWithRemoveCommas(userFixUsd)) / stxPrice).toFixed(2)));
+    $("#input-stx-amount").val(defaultAmountSTX.toFixed(2));
+    $("#input-usd-provision-price").val(numberWithCommas((parseFloat(numberWithRemoveCommas(defaultAmountSTX)) * stxPrice).toFixed(2)));
 
     return Array(meta_info[0].pox.current_cycle.id + 1).fill().map((v, i) => i + 1).map(x => calculateAPY(x, per_year));
 }
